@@ -7,7 +7,7 @@ export default function Home() {
     <>
         <Navbar/>
         <Hero text={'WELCOME TO MY CLASS'} />
-        <Hero />
+        
         <Footer />
     </>
   )

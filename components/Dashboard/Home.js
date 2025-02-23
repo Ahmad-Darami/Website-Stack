@@ -17,14 +17,14 @@ const Square = styled(Link)`
   justify-content: center;
   width: 50px; // Adjust the size as needed
   height: 50px; // Adjust the size as needed
-  background-color: #007bff; // Adjust the background color as needed
+  background-color; // Adjust the background color as needed
   color: white;
   border-radius: 4px; // Adjust for square or rounded corners
   text-decoration: none;
   
   svg {
-    width: 24px; // Adjust icon size as needed
-    height: 24px; // Adjust icon size as needed
+    width: 22px; // Adjust icon size as needed
+    height: 22px; // Adjust icon size as needed
   }
 
   &:hover {
