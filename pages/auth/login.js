@@ -22,27 +22,41 @@ const Login = () => {
   return (
     <>
     <Navbar/>
-      <Header>
-        Login
-      </Header>
+    <LogInSection>
     <Section>
-      <InputTitle>Email</InputTitle>
+    <Header>
+      Login
+    </Header>
+      <InputTitle>Email: </InputTitle>
       <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-      <InputTitle>Password</InputTitle>
+    
+    <Section>
+    <InputTitle>Password</InputTitle>
       <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-
-
       <MainButton onClick={handleLogin}>Login</MainButton>
-
     </Section>
     <UserAgreementText>By signing in, you automatically agree to our <UserAgreementSpan href='/legal/terms-of-use' rel="noopener noreferrer" target="_blank"> Terms of Use</UserAgreementSpan> and <UserAgreementSpan href='/legal/privacy-policy' rel="noopener noreferrer" target="_blank">Privacy Policy.</UserAgreementSpan></UserAgreementText>
-
+    </Section>
+    </LogInSection>
     </>
   )
 }
 
 const Section = styled.section`
   display: flex;
+  flex-direction: column;
+  margin: 
+  height: 70px;
+  width: 400px;
+  justify-content: center;
+`;
+
+const LogInSection = styled.div`
+  display: flex;
+  height: 100vh;
+  overflow: none;
+  justify-content: center;
+  
 `;
 
 const Header = styled.h1`

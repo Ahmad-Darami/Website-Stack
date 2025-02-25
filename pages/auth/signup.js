@@ -47,9 +47,9 @@ const Signup = () => {
     
     <Navbar/>
     
-    <Header>Signup</Header>
+    <SignUpSection>
     <Section>
-        
+      <Header>Signup</Header>
       <InputTitle> Email: </InputTitle>
       <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
       
@@ -66,7 +66,7 @@ const Signup = () => {
 
     
     </Section>
-    
+    </SignUpSection>
     </>
   )
 }
@@ -76,9 +76,18 @@ const Signup = () => {
 const Section = styled.section`
   display: flex;
   flex-direction: column;
+  margin: 
   height: 70px;
-  // width: 400px;
+  width: 400px;
   justify-content: center;
+`;
+
+const SignUpSection = styled.div`
+  display: flex;
+  height: 100vh;
+  overflow: none;
+  justify-content: center;
+  background-color: ;
 `;
 
 const Header = styled.h1`

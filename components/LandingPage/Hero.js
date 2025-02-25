@@ -27,8 +27,6 @@ const Hero = () => {
          Hi, I'm Ahmad Darami, a passionate developer, esports enthusiast, and tech tinkerer with a background in hardware engineering, networking, and telecommunications. I love diving into coding, problem-solving, and creative projects, whether it's building interactive web apps, experimenting with Arduino, or strategizing in FIFA esports.
          Currently, I’m expanding my knowledge in JavaScript, React, and Styled Components, bringing my engineering mindset into software development. I recently started using GitHub and am actively learning how to manage repositories and collaborate effectively.
          Beyond coding, I lead my FIFA esports division, exploring ways to make the fantasy football experience more engaging. I enjoy crafting unique challenges for my 1v1 player-pick game, pushing creativity and strategy in team-building.
-         I believe in continuous learning, hands-on experimentation, and making tech both functional and fun. Whether it's debugging a Node.js app, deploying a project to Vercel, or optimizing network setups, I always strive for efficiency and innovation.
-         🚀 Always building, always learning.
          Let’s connect and create something amazing! 😃🔥
        </HeroTextColumn>
      
@@ -71,6 +69,7 @@ const Container = styled.div`
 
 const HeroTextColumn = styled.div`
 font-size: 10px;
+width: 350px;
 
 `;
 
