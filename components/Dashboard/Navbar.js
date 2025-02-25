@@ -33,7 +33,7 @@ display: flex;
 align-items:center;
 justify-content: space-between;
 gap: 25px;
-height: 75px;
+height: 40px;
 `;
 
 const Logo = styled(Link)`
@@ -50,7 +50,7 @@ padding: 10px 20px; /* Adds padding */
 text-decoration: none; /* Optional: Remove underline */
 display: inline-block; /* Ensures padding works properly */
 font-family: "Inter",sans-serif;
-font-size: 20px;
+font-size: 15px;
 font-weight:bold;
 color: Purple;
 `;

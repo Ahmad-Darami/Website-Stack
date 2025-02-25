@@ -44,29 +44,47 @@ const Signup = () => {
 
   return (
     <>
+    
     <Navbar/>
+    
+    <Header>Signup</Header>
     <Section>
-        <Header>Signup</Header>
-        <InputTitle>Email</InputTitle>
-        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-        <InputTitle>Password</InputTitle>
-        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+        
+      <InputTitle> Email: </InputTitle>
+      <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+      
+      
 
-        <UserAgreementText>By signing in, you automatically agree to our <UserAgreementSpan href='/legal/terms-of-use' rel="noopener noreferrer" target="_blank"> Terms of Use</UserAgreementSpan> and <UserAgreementSpan href='/legal/privacy-policy' rel="noopener noreferrer" target="_blank">Privacy Policy.</UserAgreementSpan></UserAgreementText>
-
-        <MainButton onClick={handleSignup}>Signup</MainButton>
-
+    <Section>
+      <InputTitle>
+      Password: 
+      </InputTitle>
+    <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+    <MainButton onClick={handleSignup}>Signup</MainButton>
     </Section>
+    <UserAgreementText>By signing in, you automatically agree to our <UserAgreementSpan href='https://www.youtube.com/watch?v=gjvOMoDf4-4' rel="noopener noreferrer" target="_blank"> Terms of Use</UserAgreementSpan> and <UserAgreementSpan href='/legal/privacy-policy' rel="noopener noreferrer" target="_blank">Privacy Policy.</UserAgreementSpan></UserAgreementText>
+
+    
+    </Section>
+    
     </>
   )
 }
 
+
+
 const Section = styled.section`
   display: flex;
+  flex-direction: column;
+  height: 70px;
+  // width: 400px;
+  justify-content: center;
 `;
 
 const Header = styled.h1`
   font-size: 24px; /* Adjusted for better scalability */
+  text-align:;
+  padding: 5px;
 `;
 
 const Input = styled.input`
@@ -80,6 +98,7 @@ const InputTitle = styled.label` /* Changed to label for semantics */
 
 const MainButton = styled.button`
   font-size: 16px;
+  margin-left: 5px;
 
 `;
 

@@ -27,8 +27,8 @@ const Square = styled(Link)`
     height: 22px; // Adjust icon size as needed
   }
 
-  &:hover {
-    background-color: #0056b3; // Adjust hover effect as needed
+  // &:hover {
+  //   background-color: #0056b3; // Adjust hover effect as needed
   }
 `;
 

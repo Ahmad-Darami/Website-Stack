@@ -6,15 +6,11 @@ const Footer = () => {
     <FooterSection>
       <FooterContainer>
         <LeftContainer>
-          © {new Date().getFullYear()} CMPSC 263
         </LeftContainer>
         <CenterContainer>
-          <Link href="#">Privacy Policy</Link> | <Link href="#">Terms of Service</Link>
         </CenterContainer>
         <RightContainer>
-          <SocialIcon href="#" aria-label="Facebook">FB</SocialIcon>
-          <SocialIcon href="#" aria-label="Twitter">TW</SocialIcon>
-          <SocialIcon href="#" aria-label="Instagram">IG</SocialIcon>
+          <SocialIcon href="https://www.linkedin.com/in/ahmad-darami-452b89290/" aria-label="Linkedin">LinkedIn</SocialIcon>
         </RightContainer>
       </FooterContainer>
     </FooterSection>

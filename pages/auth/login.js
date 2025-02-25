@@ -22,18 +22,21 @@ const Login = () => {
   return (
     <>
     <Navbar/>
+      <Header>
+        Login
+      </Header>
     <Section>
-        <Header>Login</Header>
-        <InputTitle>Email</InputTitle>
-        <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
-        <InputTitle>Password</InputTitle>
-        <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+      <InputTitle>Email</InputTitle>
+      <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
+      <InputTitle>Password</InputTitle>
+      <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
 
-        <UserAgreementText>By signing in, you automatically agree to our <UserAgreementSpan href='/legal/terms-of-use' rel="noopener noreferrer" target="_blank"> Terms of Use</UserAgreementSpan> and <UserAgreementSpan href='/legal/privacy-policy' rel="noopener noreferrer" target="_blank">Privacy Policy.</UserAgreementSpan></UserAgreementText>
 
-        <MainButton onClick={handleLogin}>Login</MainButton>
+      <MainButton onClick={handleLogin}>Login</MainButton>
 
     </Section>
+    <UserAgreementText>By signing in, you automatically agree to our <UserAgreementSpan href='/legal/terms-of-use' rel="noopener noreferrer" target="_blank"> Terms of Use</UserAgreementSpan> and <UserAgreementSpan href='/legal/privacy-policy' rel="noopener noreferrer" target="_blank">Privacy Policy.</UserAgreementSpan></UserAgreementText>
+
     </>
   )
 }
@@ -44,6 +47,7 @@ const Section = styled.section`
 
 const Header = styled.h1`
   font-size: 24px; /* Adjusted for better scalability */
+  padding: 2px;
 `;
 
 const Input = styled.input`
@@ -58,6 +62,7 @@ const InputTitle = styled.label` /* Changed to label for semantics */
 
 const MainButton = styled.button`
   background-color: #007bff;
+  margin-left: 5px;
   &:hover {
     background-color: #0056b3;
   }
