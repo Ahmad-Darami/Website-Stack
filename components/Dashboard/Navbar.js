@@ -16,8 +16,8 @@ const Navbar = () => {
     {/* Left-aligned buttons */}
     <div style={{ display: "flex", gap: "0.rem", alignItems: "center" }}>
           <Home />
-          <ButtonLink href="">Custom GPT!</ButtonLink>
-          <ButtonLink href="">Contact Me!</ButtonLink>
+          <ButtonLink href="CustomGPT">Custom GPT!</ButtonLink>
+          <ButtonLink href="ContactMe">Contact Me!</ButtonLink>
         </div> 
 
     {/* Right-aligned buttons */}

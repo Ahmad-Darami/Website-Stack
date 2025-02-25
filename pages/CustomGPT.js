@@ -6,10 +6,11 @@ import { useStateContext } from '@/context/StateContext';
 import Home from '@/components/Dashboard/Home'
 import FontStyles from '@/Styles/GlobalStyles';
 import { useState, useEffect } from "react";
+import Navbar from '@/components/Dashboard/Navbar';
 
 const CustomGPT = () => {
     return (
-
+        <Navbar/>
 
 
 
@@ -26,3 +27,5 @@ const CustomGPT = () => {
 
 
 };
+
+export default CustomGPT;
