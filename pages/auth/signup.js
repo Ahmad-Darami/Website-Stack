@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useRouter } from 'next/router'
 import { useStateContext } from '@/context/StateContext'
-import { isEmailInUse, register} from '@/backend/Auth'
+import { IsEmailInUse, register} from '@/backend/Auth'
 import Link from 'next/link'
 import Navbar from '@/components/Dashboard/Navbar'
 const Signup = () => {
@@ -19,7 +19,7 @@ const Signup = () => {
         return false;
     }
     console.log('so far so good...')
-    const emailResponse = await isEmailInUse(email)
+    const emailResponse = await IsEmailInUse(email)
     console.log('email response', emailResponse)
     if(emailResponse.length == 0 ){
         return false;
@@ -30,8 +30,8 @@ const Signup = () => {
 
   async function handleSignup(){
     const isValidEmail = await validateEmail()
-    // console.log('isValidEmail', isValidEmail)
-    // if(!isValidEmail){ return; }
+    console.log('isValidEmail', isValidEmail)
+    if(!isValidEmail){ return; }
     
     try{
         await register(email, password, setUser)
@@ -88,6 +88,8 @@ const SignUpSection = styled.div`
   overflow: none;
   justify-content: center;
   background-color: ;
+  padding: 5px;
+  
 `;
 
 const Header = styled.h1`
@@ -108,7 +110,9 @@ const InputTitle = styled.label` /* Changed to label for semantics */
 const MainButton = styled.button`
   font-size: 16px;
   margin-left: 5px;
-
+  width:150px;
+  justify-content:center;
+  right:10px;
 `;
 
 const UserAgreementText = styled.p`

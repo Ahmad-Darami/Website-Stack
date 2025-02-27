@@ -16,8 +16,8 @@ const Navbar = () => {
     {/* Left-aligned buttons */}
     <div style={{ display: "flex", gap: "0.rem", alignItems: "center" }}>
           <Home />
-          <ButtonLink href="CustomGPT">Custom GPT!</ButtonLink>
-          <ButtonLink href="ContactMe">Contact Me!</ButtonLink>
+          <ButtonLink href="/CustomGPT">Custom GPT!</ButtonLink>
+          <ButtonLink href="/contact">Contact Me!</ButtonLink>
         </div> 
 
     {/* Right-aligned buttons */}
@@ -51,6 +51,7 @@ justify-content: space-between;
 gap: 25px;
 height: 40px;
 flex:flex-shrink;
+overflow: hidden;
 `;
 
 const Logo = styled(Link)`

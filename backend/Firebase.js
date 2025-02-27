@@ -4,29 +4,21 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { getAuth } from "firebase/auth";
 
-// const firebaseConfig = process.env.NODE_ENV === 'production' ? {
-//   apiKey: "",
-//   authDomain: "",
-//   projectId: "",
-//   storageBucket: "",
-//   messagingSenderId: "",
-//   appId: "", 
-//   measurementId: ""
-// } : {
-//   apiKey: "",
-//   authDomain: "",
-//   projectId: "",
-//   storageBucket: "com",
-//   messagingSenderId: "",
-//   appId: "",
-//   measurementId: ""
-// }
+const firebaseConfig = {
+    apiKey: "AIzaSyALjR1j1MuW2UNjovIK6aSwFNEVQX61esw",
+    authDomain: "personal-website-dev-64dba.firebaseapp.com",
+    projectId: "personal-website-dev-64dba",
+    storageBucket: "personal-website-dev-64dba.firebasestorage.app",
+    messagingSenderId: "986046591851",
+    appId: "1:986046591851:web:78b084322b05e04a37d22e"
+  };
+  
+  // Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
-// export const auth = getAuth(app);
-// export const storage = getStorage(app);
-// export const database = getFirestore(app);
-// export const analytics = () => getAnalytics(app);
+export const auth = getAuth(app);
+export const storage = getStorage(app);
+export const database = getFirestore(app);
+export const analytics = () => getAnalytics(app);
 
-// export default app
+export default app;
