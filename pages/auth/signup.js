@@ -5,6 +5,10 @@ import { useStateContext } from '@/context/StateContext'
 import { IsEmailInUse, register} from '@/backend/Auth'
 import Link from 'next/link'
 import Navbar from '@/components/Dashboard/Navbar'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
+import {SignUpUser} from '/backend/Auth'
+import {auth} from '/backend/firebase'
+
 const Signup = () => {
 
   const { user, setUser } = useStateContext()
@@ -21,6 +25,7 @@ const Signup = () => {
     console.log('so far so good...')
     const emailResponse = await IsEmailInUse(email)
     console.log('email response', emailResponse)
+    
     if(emailResponse.length == 0 ){
         return false;
     }
@@ -31,11 +36,12 @@ const Signup = () => {
   async function handleSignup(){
     const isValidEmail = await validateEmail()
     console.log('isValidEmail', isValidEmail)
+    
     if(!isValidEmail){ return; }
     
     try{
-        await register(email, password, setUser)
-        router.push('/dashboard')
+        await SignUpUser(auth,email,password) // startsignup process
+        router.push('/')
     }catch(err){
         console.log('Error Signing Up', err)
     }
@@ -53,8 +59,6 @@ const Signup = () => {
       <InputTitle> Email: </InputTitle>
       <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
       
-      
-
     <Section>
       <InputTitle>
       Password: 

@@ -1,11 +1,9 @@
 import { auth } from "./Firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
   
-const email = "Darami2022@gmail.com";
 
-const password = "123456";
-
-createUserWithEmailAndPassword(auth,email,password)
+export function SignUpUser(auth,email,password) {
+createUserWithEmailAndPassword(auth,email,password) 
     .then((userCredential) => {
         //signed in 
         const user = userCredential.user;
@@ -18,8 +16,9 @@ createUserWithEmailAndPassword(auth,email,password)
 
             console.error(`Error ${errorCode}: ${errorMessage}`)
         });
+    }
 
-signInWithEmailAndPassword(auth,email,password)
+export function SignIn(auth,email,password) {signInWithEmailAndPassword(auth,email,password) 
     .then((userCredential) => {
         const user = userCredential.user;
     
@@ -32,6 +31,7 @@ signInWithEmailAndPassword(auth,email,password)
         console.error(`Error ${errorCode}: ${errorMessage}`);
     });
 
+}
 export function IsEmailInUse(email) {
     return fetchSignInMethodsForEmail(auth, email)
         .then((signInMethods) => {
@@ -51,10 +51,17 @@ export function IsEmailInUse(email) {
         });
 };
 
+export function LogOut() 
 
-
-
-
+{handleLogout = async () => {
+    try {
+      await signOut(auth);
+      console.log("User logged out successfully");
+    } catch (error) {
+      console.error("Logout failed:", error.message);
+    }
+  };
+}
 
 
 

@@ -5,6 +5,9 @@ import { useStateContext } from '@/context/StateContext'
 import {login, isEmailInUse} from '@/backend/Auth'
 import Link from 'next/link'
 import Navbar from '@/components/Dashboard/Navbar'
+import {SignIn} from '/backend/Auth'
+import {auth} from '/backend/firebase'
+
 const Login = () => {
 
   const { user, setUser } = useStateContext()
@@ -15,6 +18,10 @@ const Login = () => {
 
 
   async function handleLogin(){
+    await SignIn(auth,email,password);
+    console.log('Attempting to Log In')
+
+    router.push('/')
 
   }
 

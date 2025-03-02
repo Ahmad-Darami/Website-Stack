@@ -8,29 +8,37 @@ import FontStyles from '@/Styles/GlobalStyles';
 import { useState, useEffect } from "react";
 import Navbar from '@/components/Dashboard/Navbar';
 import OpenAI from "openai";
-import dotenv from "dotenv";
 
-dotenv.config()
 
-console.log(`${dotenv.config()}`)
-
-console.log("API Key:", process.env.OPENAI_API_KEY)
 
 const openai = new OpenAI({
-    apiKey : 'null',
+    apiKey : process.env.OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,
 });
+
+'use client';
+
+
+import { generate } from './api/CustomGPTAPI';
+import { readStreamableValue } from 'ai/rsc';
+
+// Allow streaming responses up to 30 seconds
+export const maxDuration = 30;
+
+
 
 const CustomGPT = () => {
     const [GPTInput, setGPTInput] = useState(""); // Track input state
     const [GPTOutput, setGPTResponse] = useState("");
+    const [generation, setGeneration] = useState('');
     const [loading,setLoading] = useState(false);
 
     return (
-        <BodyDiv>
+        <div>
         <Section>
         <Navbar/>
-        <input 
+        <MiddleDiv>
+        <GPTinput 
                     type="text" 
                     value={GPTInput} 
                     onChange={(e) => setGPTInput(e.target.value)}  
@@ -41,7 +49,7 @@ const CustomGPT = () => {
                     const response = await openai.chat.completions.create({
                         model: "gpt-4o",
                         messages: [
-                            { "role": "system", "content": "Summarize content you are provided with for a high-school student. Be Simple, be Concise." },
+                            { "role": "system", "content": "Summarize content you are provided with for a high-school student. Be Simple and Concise. Less than 100 words ideally." },
                             { "role": "user", "content": GPTInput } // Correctly passing GPTInput
                         ],
                         temperature: 1,
@@ -62,10 +70,11 @@ const CustomGPT = () => {
                         <p>{GPTOutput}</p>
                     </ResponseBox>
 )}
-
+    </MiddleDiv>
                     </Section>
-        </BodyDiv>
-
+        
+        </div>
+        
 
 
     );
@@ -79,6 +88,22 @@ const CustomGPT = () => {
 };
 
 export default CustomGPT;
+
+const GPTinput = styled.textarea`
+width: 50%;
+height: 20%;
+padding:;
+line-height: 1.5;
+
+`;
+
+const MiddleDiv = styled.div`
+display:flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+flex-direction: column;
+`;
 
 const BodyDiv = styled.div`
 

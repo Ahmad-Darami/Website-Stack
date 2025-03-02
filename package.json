@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ai-sdk/openai": "^1.1.14",
+    "@next/env": "^15.2.0",
+    "ai": "^4.1.46",
     "axios": "^1.6.7",
     "babel-plugin-styled-components": "^2.1.4",
     "crypto": "^1.0.1",

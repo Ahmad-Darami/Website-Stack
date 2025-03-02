@@ -1,32 +1,80 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link'
-import { logOut } from '@/backend/Auth';
+import { LogOut } from '/backend/Auth';
 import { useStateContext } from '@/context/StateContext';
+import { useState, useEffect } from "react";
 import Home from '@/components/Dashboard/Home'
 import FontStyles from '@/Styles/GlobalStyles';
+import {auth} from '/backend/firebase';
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useRouter } from 'next/router'
+
+
 
 const Navbar = () => {
   const { setUser } = useStateContext()
+  const [loggedIn, setLoggedIn] = useState(false); 
+
+  const router = useRouter()
+  
+
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      console.log("user is logged in:", user.email)
+      setLoggedIn(true)
+    } else {
+      console.log("user not logged in.")
+    }
+  })
+  console.log(loggedIn);
+
+  
+
+
+  
   
   return (
     <>
     <FontStyles />
     <Nav>
     {/* Left-aligned buttons */}
-    <div style={{ display: "flex", gap: "0.rem", alignItems: "center" }}>
-          <Home />
-          <ButtonLink href="/CustomGPT">Custom GPT!</ButtonLink>
-          <ButtonLink href="/contact">Contact Me!</ButtonLink>
-        </div> 
+    {loggedIn ? ( <>
+      <div style={{ display: "flex", gap: "0.rem", alignItems: "center" }}>
+                <Home />
+                <ButtonLink href="/CustomGPT">Custom GPT!</ButtonLink>
+                <ButtonLink href="/contact">Contact Me!</ButtonLink>
+              </div> 
 
-    {/* Right-aligned buttons */}
-    <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-          <SSOLink href="/auth/signup">Sign Up</SSOLink>
-          <SSOLink href="/auth/login">Login</SSOLink>
-    </div>
-        
+          
+          <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+                
+                <SSOLink href="/auth/login">Login</SSOLink>
+                <button        
+                onClick={ () => {
+                  signOut(auth);
+                  window.location.reload();
+                  }}>  
+                  log out 
+                </button>
+                
+          </div>
+          </>
+) : ( <>
+    <div style={{ display: "flex", gap: "0.rem", alignItems: "center" }}>
+      <Home />
+      <ButtonLink href="/CustomGPT">Custom GPT!</ButtonLink>
+      <ButtonLink href="/contact">Contact Me!</ButtonLink>
+    </div> 
+
     
+    <div style={{ display: "flex", gap: "0rem", alignItems: "center" }}>
+      <SSOLink href="/auth/signup">Sign Up</SSOLink>
+      <SSOLink href="/auth/login">Login</SSOLink>
+    </div>
+    </>
+    )}
     </Nav>
     </>
   );
