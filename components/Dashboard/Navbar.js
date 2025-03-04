@@ -37,13 +37,13 @@ const Navbar = () => {
   }, []); // ✅ Empty dependency array ensures it runs only once
 
   return (
-    <>
+    <GlobalNavbar>
     <FontStyles />
     <Nav>
     {/* Left-aligned buttons */}
     {loggedIn ? ( <>
       <div style={{ display: "flex", gap: "0.rem", alignItems: "center" }}>
-                <Home />
+                <Home/>
                 <ButtonLink href="/CustomGPT">Custom GPT!</ButtonLink>
                 <ButtonLink href="/contact">Contact Me!</ButtonLink>
               </div> 
@@ -77,37 +77,65 @@ const Navbar = () => {
     </>
     )}
     </Nav>
-    </>
+    </GlobalNavbar>
   );
 };
 
+const GlobalNavbar = styled.div`
+background color:rgb(31, 106, 160);
+
+`
+
 const LogOutButton = styled.button`
+font-family: 'Geist Sans', sans-serif;
 padding: 10px 20px; /* Adds padding */
 text-decoration: none; /* Optional: Remove underline */
 display: inline-block; /* Ensures padding works properly */
 font-family: "Inter",sans-serif;
 font-size: 15px;
-font-weight:bold;
-color: grey;
+font-weight:;
+color:#3D3D3D;
 align-items:left;
 border:none;
 outline:none;
 background-color: transparent;
+;
 `;
 
 const ButtonLink = styled(Link)`
+font-family: 'Geist Sans', sans-serif;
 padding: 10px 20px; /* Adds padding */
 text-decoration: none; /* Optional: Remove underline */
 display: inline-block; /* Ensures padding works properly */
 font-family: "Inter",sans-serif;
 font-size: 15px;
-font-weight:bold;
-color: grey;
+font-weight:;
+color:#3D3D3D;
 align-items:left;
+;
 `;
 
+// const Nav = styled.nav`
+//   font-family: 'Geist Sans', sans-serif;
+//   background-color: #AFA29D;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   gap: 25px;
+//   height: 40px;
+//   z-index: 1000;
+//   border-radius: 15px;
+//   border: none;
+//   box-shadow: none;
+//   margin: 2px;
+//   padding: 10px; /* ✅ Padding will now be transparent */
+//   background-clip: padding-box; /* ✅ Prevents background from spreading into padding */
+// `;
+
+
 const Nav = styled.nav`
-background-color: navy;
+font-family: 'Geist Sans', sans-serif;
+background-color:#AFA29D;
 display: flex;
 align-items:center;
 justify-content: space-between;
@@ -115,28 +143,38 @@ gap: 25px;
 height: 40px;
 flex:flex-shrink;
 overflow: hidden;
+z-index: 1000;
+border-radius: 15px;
+border:none;
+box-shadow:none;
+margin: 2px;
+padding: 2px;
+background-clip: padding-box;
 `;
 
 const Logo = styled(Link)`
 align-items:left;
+
 `;
 
 const NavLinks = styled.div`
 display:flex;
 align-items:left;
 
+
 `;
 
 const SSOLink = styled(Link)`
-
+font-family: 'Geist Sans', sans-serif;
 padding: 10px 20px; /* Adds padding */
 text-decoration: none; /* Optional: Remove underline */
 display: inline-block; /* Ensures padding works properly */
 font-family: "Inter",sans-serif;
 font-size: 15px;
-font-weight:bold;
-color: Grey;
+font-weight: 700;
+color: #3D3D3D;
 align-items:right;
+
 `;
 
 

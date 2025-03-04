@@ -64,10 +64,12 @@ const AdminPage = () => {
     }, []);
     
 return (
-    <>
+    
+    <Pardiv>
     <Navbar/>
     <PageDiv>
     
+    <DropdownContainer>
     {BooleanAdmin ? <p>You are an admin!</p> : <p>Access Denied</p>}
     
 
@@ -77,6 +79,7 @@ return (
                 <Option value="contact-messages">Contact Messages</Option>
             </ComboBox>
     <button onClick={handleSearch}>Search</button>
+    </DropdownContainer>
     {loading ? (
                 <p>Loading...</p>
             ) : database.length > 0 ? (
@@ -88,9 +91,28 @@ return (
             )}
     
     </PageDiv>
-    </>
+    </Pardiv>
 );
 };
+
+const DropdownContainer = styled.div`
+  display: ;
+  justify-content: center;
+  margin-top: 20px;
+  position: relative;
+  z-index: 2; /* Prevents it from overlapping */
+`;
+
+
+const Pardiv = styled.div`
+text-align: center;
+width: 100%;
+display: inline-block;
+height: 100vh;
+justify-content: center;
+
+
+`;
 
 const StyledMessage = styled.p`
 font-size: 16px;
@@ -111,7 +133,9 @@ display:flex;
 justify-content: center;
 align-items: center;
 height: 100vh;
+flex-grow:1;
 flex-direction: column;
+overflow-y: auto;
 `
 
 const ComboBox = styled.select`

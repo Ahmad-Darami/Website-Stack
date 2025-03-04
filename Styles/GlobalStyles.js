@@ -1,14 +1,24 @@
 import { createGlobalStyle } from "styled-components";
+import '@fontsource-variable/plus-jakarta-sans'
 
 const FontStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
   * {
-    font-family: Tahoma, sans-serif;
+    font-family: 'Plus Jakarta Sans Variable', sans-serif;
     font-weight: normal;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1;
+    
+  
+
   }
 `;
 
+// background-color: #2D3748;
+// font-family: 'Geist Sans', sans-serif;
 export default FontStyles;
 
 

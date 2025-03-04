@@ -38,7 +38,7 @@ const Link = styled.a`
 `;
 
 const SocialIcon = styled.a`
-  color: #fff;
+  color: black;
   text-decoration: none;
   font-size: 1.5rem;
   &:hover {

@@ -19,6 +19,7 @@ const ContactMessages = collection(db, "contact-messages"); // ✅ Ensure correc
 const ContactMe = () => {
     const [MessageBody,setMessageBody] = useState('')
     const [loggedIn, setLoggedIn] = useState(false); 
+    const [User, setUser] = useState(null);
     const router = useRouter()  
 
 useEffect(() => {
@@ -26,6 +27,7 @@ useEffect(() => {
       if (user) {
         console.log("User is logged in:", user.email);
         setLoggedIn(true);
+        setUser(user)
       } else {
         console.log("User not logged in.");
         setLoggedIn(false);
@@ -57,7 +59,7 @@ useEffect(() => {
               return; // Stop execution if the message is empty
             }
             console.log("Button clicked, sending message:", MessageBody);
-            await CreateData(ContactMessages,{message:MessageBody});
+            await CreateData(ContactMessages,{message:`${User.email} says: ${MessageBody}`});
             setMessageBody('')
         }}>
             Submit Contact
