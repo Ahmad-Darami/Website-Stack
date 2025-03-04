@@ -8,22 +8,33 @@ import Navbar from '@/components/Dashboard/Navbar'
 import {SignIn} from '/backend/Auth'
 import {auth} from '/backend/firebase'
 
+
 const Login = () => {
 
   const { user, setUser } = useStateContext()
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
-
   const router = useRouter()
 
 
   async function handleLogin(){
-    await SignIn(auth,email,password);
-    console.log('Attempting to Log In')
+    try {
+      const user = await SignIn(auth, email, password);
+      console.log(user)
+    if (user) {
+      console.log('Login successful', user);
+      router.push('/')
+      }
+  } catch (error) {
+    console.error('Login failed:', error.message);
+    const firebaseError = error.code ? error.code : error.message;
 
-    router.push('/')
-
-  }
+    // Display the error message in an alert
+    
+    window.alert('Login failed: ' + firebaseError);
+    
+}
+}
 
 
   return (

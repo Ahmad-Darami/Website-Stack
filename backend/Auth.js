@@ -1,6 +1,8 @@
-import { auth } from "./Firebase";
+import { auth,db } from "./Firebase";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, fetchSignInMethodsForEmail } from "firebase/auth";
-  
+import { doc, getDoc } from "firebase/firestore";
+
+
 
 export function SignUpUser(auth,email,password) {
 createUserWithEmailAndPassword(auth,email,password) 
@@ -18,20 +20,36 @@ createUserWithEmailAndPassword(auth,email,password)
         });
     }
 
-export function SignIn(auth,email,password) {signInWithEmailAndPassword(auth,email,password) 
-    .then((userCredential) => {
-        const user = userCredential.user;
+export async function IsAdmin() {
+    const user = auth.currentUser;
+    if (!user) return false;
     
+    const adminRef = doc(db, "admins", user.email); // Assumes admin emails are stored as document IDs
+    const adminSnap = await getDoc(adminRef);
+    
+    return adminSnap.exists(); // Returns true if the admin document exists
+    }
+
+
+
+    
+
+
+
+
+export async function SignIn(auth, email, password) {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+        
         console.log(`User ${user.email} logged in successfully :)`);
-    })
-    .catch((error) => {
-        const errorCode = error.code
-        const errorMessage = error.message
-
-        console.error(`Error ${errorCode}: ${errorMessage}`);
-    });
-
+        return user; // Now correctly returning the user
+    } catch (error) {
+        console.error(`Error ${error.code}: ${error.message}`);
+        throw error; // Rethrow the error so `handleLogin` can catch it
+    }
 }
+
 export function IsEmailInUse(email) {
     return fetchSignInMethodsForEmail(auth, email)
         .then((signInMethods) => {

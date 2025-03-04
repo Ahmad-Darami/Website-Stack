@@ -15,26 +15,27 @@ import { useRouter } from 'next/router'
 const Navbar = () => {
   const { setUser } = useStateContext()
   const [loggedIn, setLoggedIn] = useState(false); 
-
   const router = useRouter()
   
 
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      console.log("user is logged in:", user.email)
-      setLoggedIn(true)
-    } else {
-      console.log("user not logged in.")
-    }
-  })
+  
   console.log(loggedIn);
 
-  
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("User is logged in:", user.email);
+        setLoggedIn(true);
+      } else {
+        console.log("User not logged in.");
+        setLoggedIn(false);
+      }
+    });
 
+  return () => unsubscribe(); // ✅ Cleanup listener to prevent memory leaks
+  }, []); // ✅ Empty dependency array ensures it runs only once
 
-  
-  
   return (
     <>
     <FontStyles />
@@ -50,14 +51,14 @@ const Navbar = () => {
           
           <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
                 
-                <SSOLink href="/auth/login">Login</SSOLink>
-                <button        
+              
+                <LogOutButton        
                 onClick={ () => {
                   signOut(auth);
                   window.location.reload();
                   }}>  
-                  log out 
-                </button>
+                  Log Out 
+                </LogOutButton>
                 
           </div>
           </>
@@ -65,7 +66,7 @@ const Navbar = () => {
     <div style={{ display: "flex", gap: "0.rem", alignItems: "center" }}>
       <Home />
       <ButtonLink href="/CustomGPT">Custom GPT!</ButtonLink>
-      <ButtonLink href="/contact">Contact Me!</ButtonLink>
+      {/* <ButtonLink href="/contact">Contact Me!</ButtonLink> */}
     </div> 
 
     
@@ -79,6 +80,20 @@ const Navbar = () => {
     </>
   );
 };
+
+const LogOutButton = styled.button`
+padding: 10px 20px; /* Adds padding */
+text-decoration: none; /* Optional: Remove underline */
+display: inline-block; /* Ensures padding works properly */
+font-family: "Inter",sans-serif;
+font-size: 15px;
+font-weight:bold;
+color: grey;
+align-items:left;
+border:none;
+outline:none;
+background-color: transparent;
+`;
 
 const ButtonLink = styled(Link)`
 padding: 10px 20px; /* Adds padding */
@@ -123,5 +138,6 @@ font-weight:bold;
 color: Grey;
 align-items:right;
 `;
+
 
 export default Navbar;

@@ -1,14 +1,28 @@
-import { doc, setDoc, getDoc, getDocs, collection, query, where } from "firebase/firestore"
+import { getFirestore } from "firebase/firestore";
+import { doc, setDoc, getDoc, getDocs, collection, query, where,addDoc } from "firebase/firestore"
 import { database } from "./Firebase"
+import {app} from "./Firebase"
+import {db} from "./Firebase"
 
-const newDocData = {name: "New Message" , content: "Content of Message"}
-const docRef = doc(database, "articles", "articleId");
+
+export async function CreateData(docRef,message){
+  try {
+    await addDoc(docRef, { message: message }); // ✅ Store as an object
+    console.log("Message submitted successfully!");
+    alert("Message sent!");
+  } catch (error) {
+    console.error("Error submitting message:", error);
+  }
+}
 
 
-setDoc(docRef,newDocData)
-    .then(() => {
-        console.log("Document Written Successfully")
-    })
-    .catch((error) => {
-        console.error("Error writing docoument: ", error)
-    })
+export async function fetchCollectionData(collectionName) {
+  try {
+      const querySnapshot = await getDocs(collection(db, collectionName));
+      const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      return data;
+  } catch (error) {
+      console.error("Error fetching Firestore data:", error);
+      return [];
+  }
+}
