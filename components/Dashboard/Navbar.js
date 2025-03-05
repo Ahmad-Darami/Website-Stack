@@ -9,12 +9,14 @@ import FontStyles from '@/Styles/GlobalStyles';
 import {auth} from '/backend/firebase';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useRouter } from 'next/router'
+import { IsAdmin } from '@/backend/Auth';
 
 
 
 const Navbar = () => {
   const { setUser } = useStateContext()
-  const [loggedIn, setLoggedIn] = useState(false); 
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false) 
   const router = useRouter()
   
 
@@ -23,15 +25,24 @@ const Navbar = () => {
   console.log(loggedIn);
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         console.log("User is logged in:", user.email);
         setLoggedIn(true);
-      } else {
+        try {
+          const isAdminUser = await IsAdmin(); // ✅ Fetch admin status from Firestore
+          setIsAdmin(isAdminUser);
+          console.log("Admin status:", isAdminUser);
+        } catch (error) {
+          console.error("🔥 Firebase Error:", error.message);
+        }
+        } else {
         console.log("User not logged in.");
         setLoggedIn(false);
+        setIsAdmin(false);
       }
     });
+  console.log(isAdmin)
 
   return () => unsubscribe(); // ✅ Cleanup listener to prevent memory leaks
   }, []); // ✅ Empty dependency array ensures it runs only once
@@ -46,6 +57,7 @@ const Navbar = () => {
                 <Home/>
                 <ButtonLink href="/CustomGPT">Custom GPT!</ButtonLink>
                 <ButtonLink href="/contact">Contact Me!</ButtonLink>
+                {isAdmin && <LogOutButton onClick={() => router.push('/AdminPage')}>Admin Panel</LogOutButton>} {/* ✅ Admin button */}
               </div> 
 
           
@@ -81,6 +93,20 @@ const Navbar = () => {
   );
 };
 
+const AdminButton = styled.button`
+  padding: 10px 15px;
+  font-size: 15px;
+  font-weight: 700;
+  color: white;
+  background-color: #0070f3;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  &:hover {
+    background-color: #005bb5;
+  }
+`;
+
 const GlobalNavbar = styled.div`
 background color:rgb(31, 106, 160);
 
@@ -99,6 +125,11 @@ align-items:left;
 border:none;
 outline:none;
 background-color: transparent;
+cursor: pointer; /* Changes cursor to pointer on hover */
+ &:hover {
+    cursor: pointer;
+  }
+
 ;
 `;
 
@@ -171,9 +202,9 @@ text-decoration: none; /* Optional: Remove underline */
 display: inline-block; /* Ensures padding works properly */
 font-family: "Inter",sans-serif;
 font-size: 15px;
-font-weight: 700;
-color: #3D3D3D;
-align-items:right;
+font-weight:;
+color:#3D3D3D;
+align-items:left;
 
 `;
 

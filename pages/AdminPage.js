@@ -68,9 +68,9 @@ return (
     <Pardiv>
     <Navbar/>
     <PageDiv>
-    
-    <DropdownContainer>
     {BooleanAdmin ? <p>You are an admin!</p> : <p>Access Denied</p>}
+    <DropdownContainer>
+    
     
 
     <ComboBox value={searchterm} onChange={(e) => setsearchterm(e.target.value)}>
@@ -78,8 +78,9 @@ return (
                 <Option value="GPT-messages">GPT-messages</Option>
                 <Option value="contact-messages">Contact Messages</Option>
             </ComboBox>
-    <button onClick={handleSearch}>Search</button>
+    
     </DropdownContainer>
+    <button onClick={handleSearch}>Search</button>
     {loading ? (
                 <p>Loading...</p>
             ) : database.length > 0 ? (
@@ -136,6 +137,7 @@ height: 100vh;
 flex-grow:1;
 flex-direction: column;
 overflow-y: auto;
+gap:15px;
 `
 
 const ComboBox = styled.select`

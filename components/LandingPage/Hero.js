@@ -17,9 +17,9 @@ const FontChanger = () => {
         const nextIndex = (fonts.indexOf(prevFont) + 1) % fonts.length;
         return fonts[nextIndex];
       });
-    }, 500); // Changes font every 300ms
+    }, 500); // Changes font every 500ms
 
-    return () => clearInterval(interval); // Cleanup on unmount
+    return () => clearInterval(interval); 
   }, []);
 
   return <Highlight style={{ fontFamily: font, fontSize: '30px',}} >Ahmad Darami</Highlight>;
@@ -58,46 +58,45 @@ const Hero = () => {
               {/* <Highlight>
                 Ahmad Darami
               </Highlight> */}
-
-              <Div2>
+            <Div2>
+            
                 <FontChanger style={{
                   fontSize:"100px",
                 }}/>
-              </Div2>
+            
+              <HeroTextColumn style={{padding: '10px', fontSize: '10pt', width:'90%',}} >
+                Hi, I'm Ahmad Darami, a passionate developer, esports enthusiast, and tech tinkerer studying hardware engineering. <br /> <br />I love diving into coding, problem-solving, and developing my soft skills.
+              </HeroTextColumn>
+            </Div2>
+              
 
             </Header>
       <ProfileImg src="https://media.licdn.com/dms/image/v2/D4E03AQHBETyDd264Zg/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1726078206706?e=1746057600&v=beta&t=tFu6a51hN_f0qclYkfnLZMYkjnKEQ481lzWBmvPDb_Y" />
 
       </Overlay>
       <Achievements>
-          <div>
-          <HeroTextColumn style={{padding: '20px', fontSize: '10pt',}} >
           
-          Hi, I'm Ahmad Darami, a passionate developer, esports enthusiast, and tech tinkerer with a background in hardware engineering, networking, and telecommunications. I love diving into coding, problem-solving, and creative projects.<br /><br />
-          Currently, I’m expanding my knowledge in JavaScript, React, and Styled Components, bringing my engineering mindset into software development. <br /><br />I recently started using GitHub and am actively learning how to manage repositories and collaborate effectively.
-          </HeroTextColumn>
-          <h1 style={{fontSize: '15pt', margin: '15px', fontWeight: '99999',}}>Notable Things I've done!</h1>
-
-          
-          <AchieveTitle>Bachelor of Science in Computer Engineering - Pennsylvania State University</AchieveTitle>
-          
-          </div>
-
-          <div>
-          <AchieveTitle></AchieveTitle>
           <HeroTextColumn>
-          Hi, I'm Ahmad Darami, a passionate developer, esports enthusiast, and tech tinkerer with a background in hardware engineering, networking, and telecommunications. I love diving into coding, problem-solving, and creative projects, whether it's building interactive web apps, experimenting with Arduino, or strategizing in FIFA esports.
-          Currently, I’m expanding my knowledge in JavaScript, React, and Styled Components, bringing my engineering mindset into software development. I recently started using GitHub and am actively learning how to manage repositories and collaborate effectively.
+          Currently, I’m expanding my knowledge in JavaScript, React, and Styled Components, bringing my engineering mindset into software development. 
           </HeroTextColumn>
-          </div>
-
-          <div>
-          <AchieveTitle></AchieveTitle>
+          <h1 style={{fontSize: '15pt', margin: '15px', fontWeight: '99999',}}>Notable Things I've done this Year:</h1>
+          
+          
+          <AchieveTitle>Content Team - TEDxPSU</AchieveTitle>
           <HeroTextColumn>
-          Hi, I'm Ahmad Darami, a passionate developer, esports enthusiast, and tech tinkerer with a background in hardware engineering, networking, and telecommunications. I love diving into coding, problem-solving, and creative projects, whether it's building interactive web apps, experimenting with Arduino, or strategizing in FIFA esports.
-          Currently, I’m expanding my knowledge in JavaScript, React, and Styled Components, bringing my engineering mindset into software development. I recently started using GitHub and am actively learning how to manage repositories and collaborate effectively.
+          Facilitated communication between TEDx management and speaker, ensuring smooth coordination and alignment with event goals.
           </HeroTextColumn>
-          </div>
+          
+          <AchieveTitle>Stream Team - SOC 119</AchieveTitle>
+          <HeroTextColumn>
+          Directed Live Steam operations, facilitating live discussions on key societal topics; fostering open communication.
+          </HeroTextColumn>
+          
+          <AchieveTitle>Food Service Worker</AchieveTitle>
+          <HeroTextColumn>
+          Assembled customer orders quickly and accurately, maintaining efficiency in a fast-paced food service environment.
+          </HeroTextColumn>
+          
        </Achievements>
       
        <Stacked>
@@ -107,14 +106,14 @@ const Hero = () => {
                 style={{
                     padding: "10px 20px",
                     fontSize: "16px",
-                    backgroundColor: "#4CAF50",
+                    backgroundColor: "#AFA29D",
                     color: "white",
                     border: "none",
                     borderRadius: "5px",
                     cursor: "pointer"
                 }}
             >
-                {loading ? "Fetching..." : "Get Advice"}
+                {loading ? "Loading..." : "Random Advice Button"}
             </AdviceButton>
 
             {advice && (
@@ -143,7 +142,7 @@ const Hero = () => {
 
 const AdviceButton = styled.button`
 height: 40px;
-width: 150px;
+width: 215px;
 `
 
 const Stacked = styled.div`
@@ -152,14 +151,16 @@ align-items: center;
 width: 100%;
 display: flex;
 flex-direction:column;
-
+margin:10px;
 justify-content: center;
-
 
 `;
 const Div2 = styled.div`
 width: 250px;
 height: 75%;
+display:flex;
+flex-direction:column;
+align-items:center;
 `;
 
 const AchieveTitle = styled.h2`
@@ -168,14 +169,14 @@ padding: 5px;
 
 const Achievements = styled.div`
 display: grid;
-gap: 20px;
-padding: 20px;
+gap: 4px;
+padding: 0px;
 `
 
 
 const ProfileImg = styled.img`
-height: 125px;
-width: 125px;
+height: 150px;
+width: 150px;
 text-align: right;
 border: 1px solid #ccc;
 margin: -25px;
@@ -184,25 +185,27 @@ margin: -25px;
 
 const Section = styled.div`
 text-align: center;
-
 width: 100%;
-display: inline-block;
+display: flex;
+flex-direction:column;
 
-overflow-y: auto;
 justify-content: center;
+flex-wrap:wrap;
+
 
 
 `;
 
+
 const Overlay = styled.div`
 display: flex;
-justify-content: center;
+justify-content:space-evenly;
 align-items: center;
 width: ;
-height: 150px;
-
-gap: 30%;
+height: auto;
+gap: %;
 margin: px;
+padding: 30px;
 
 `;
 
