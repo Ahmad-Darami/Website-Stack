@@ -8,19 +8,18 @@ import FontStyles from '@/Styles/GlobalStyles';
 import { useState, useEffect } from "react";
 import Navbar from '@/components/Dashboard/Navbar';
 import OpenAI from "openai";
+import {collection} from "firebase/firestore"
+import {db} from "/backend/firebase";
+import {CreateData} from '/backend/database';
 
+const ContactMessages = collection(db, "GPT-messages"); // ✅ Ensure correct reference
 
 
 const openai = new OpenAI({
-    apiKey : process.env.OPENAI_API_KEY,
+    apiKey : process.env.NEXT_PUBLIC_OPENAI_API_KEY,
     dangerouslyAllowBrowser: true,
 });
 
-'use client';
-
-
-import { generate } from './api/CustomGPTAPI';
-import { readStreamableValue } from 'ai/rsc';
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30;
@@ -38,6 +37,9 @@ const CustomGPT = () => {
         <Section>
         <Navbar/>
         <MiddleDiv>
+        <NewDiv>
+            <GPTTitle>My Custom GPT made with a custom prompt, enjoy!</GPTTitle>
+        </NewDiv>
         <GPTinput 
                     type="text" 
                     value={GPTInput} 
@@ -49,16 +51,20 @@ const CustomGPT = () => {
                     const response = await openai.chat.completions.create({
                         model: "gpt-4o",
                         messages: [
-                            { "role": "system", "content": "Summarize content you are provided with for a high-school student. Be Simple and Concise. Less than 100 words ideally." },
+                            { "role": "system", "content": "Summarize content you are provided with for a high-school student. Be Simple and Concise. Less than 100 words ideally. Make sure to add a metaphor to aid understanding" },
                             { "role": "user", "content": GPTInput } // Correctly passing GPTInput
                         ],
                         temperature: 1,
                         max_tokens: 256,
                         top_p: 1,
+                    
                     });
+
 
                     setGPTResponse(response.choices[0].message.content)
                     console.log(response.choices[0].message.content); // Handle the response
+                    const storevalue = await CreateData(ContactMessages, { message: `Input: ${GPTInput} Output: ${response.choices[0].message.content || ""} `});
+                    
                 }}>
                     Get Response
                     
@@ -74,26 +80,27 @@ const CustomGPT = () => {
                     </Section>
         
         </div>
-        
-
-
     );
-
-
-
-
-
-
-
 };
 
 export default CustomGPT;
 
+const NewDiv = styled.div`
+width:50%
+`;
+
+const GPTTitle = styled.h1`
+font-size: 20px;
+text-align:center;
+margin-bottom:15px;
+`;
+
 const GPTinput = styled.textarea`
 width: 50%;
 height: 20%;
-padding:;
+padding: 5px;
 line-height: 1.5;
+margin-bottom: 15px;
 
 `;
 
