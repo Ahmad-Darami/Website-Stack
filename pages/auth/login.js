@@ -6,7 +6,7 @@ import {login, isEmailInUse} from '@/backend/Auth'
 import Link from 'next/link'
 import Navbar from '@/components/Dashboard/Navbar'
 import {SignIn} from '/backend/Auth'
-import {auth} from '/backend/firebase'
+import {auth} from '../../backend/Firebase'
 
 
 const Login = () => {
@@ -46,12 +46,11 @@ const Login = () => {
       <InputTitle>Email: </InputTitle>
       <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
     
-    <Section>
     <InputTitle>Password</InputTitle>
       <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
       <MainButton onClick={handleLogin}>Login</MainButton>
     </Section>
-    </Section>
+    
     </LogInSection>
     </>
   )
@@ -60,7 +59,7 @@ const Login = () => {
 const Section = styled.section`
   display: flex;
   flex-direction: column;
-  margin: 
+  padding: px ;
   height: 70px;
   width: 400px;
   justify-content: center;
@@ -69,14 +68,15 @@ const Section = styled.section`
 const LogInSection = styled.div`
   display: flex;
   height: 100vh;
-  overflow: none;
+  width:100vw;
   justify-content: center;
-  
+  padding: 5px;
+  align-items:center;
 `;
 
 const Header = styled.h1`
   font-size: 24px; /* Adjusted for better scalability */
-  padding: 2px;
+  padding-bottom: 10px;
 `;
 
 const Input = styled.input`
@@ -90,10 +90,34 @@ const InputTitle = styled.label` /* Changed to label for semantics */
 `;
 
 const MainButton = styled.button`
-  background-color: #007bff;
-  margin-left: 5px;
+  font-size: 16px;
+  width:105px;
+  justify-content:center;
+  margin-top:10px;
+  height:90px;
+
+  /* Modern Styling */
+  display: flex;
+  align-items: center;
+  padding: 9px;
+  background: linear-gradient(135deg, #007bff, #0056b3); /* Gradient for a modern effect */
+  color: white;
+  border: none;
+  border-radius: 8px; /* Smooth, rounded edges */
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  transition: all 0.3s ease-in-out;
+
   &:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #0056b3, #003f80);
+    transform: translateY(-2px); /* Slight lift effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: scale(0.98); /* Subtle press effect */
   }
 `;
 

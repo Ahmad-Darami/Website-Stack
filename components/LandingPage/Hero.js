@@ -63,7 +63,7 @@ const Hero = () => {
                 }}/>
             
               <HeroTextColumn style={{padding: '10px', fontSize: '10pt', width:'90%',}} >
-                Hi, I'm Ahmad Darami, a passionate developer, esports enthusiast, and tech tinkerer studying hardware engineering. <br /> <br />I love diving into coding, problem-solving, and developing my soft skills.
+                I'm a passionate developer, esports enthusiast, and tech tinkerer studying hardware engineering. <br /> <br />I love diving into coding, problem-solving, and developing my soft skills.
               </HeroTextColumn>
             </Div2>
               
