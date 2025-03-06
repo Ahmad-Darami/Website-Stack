@@ -1,15 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Link from 'next/link'
-import { LogOut } from '/backend/Auth';
 import { useStateContext } from '@/context/StateContext';
 import { useState, useEffect } from "react";
 import Home from '@/components/Dashboard/Home'
 import FontStyles from '@/Styles/GlobalStyles';
-import {auth} from '/backend/firebase';
+import {auth} from '/backend/Firebase';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useRouter } from 'next/router'
-import { IsAdmin } from '@/backend/Auth';
+import { IsAdmin } from '/backend/Auth';
 
 
 
