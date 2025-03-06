@@ -7,11 +7,10 @@ import Home from '@/components/Dashboard/Home'
 import FontStyles from '@/Styles/GlobalStyles';
 import { useState, useEffect } from "react";
 import Navbar from '@/components/Dashboard/Navbar';
-import {CreateData} from '/backend/database';
+import {CreateData} from '../backend/Database';
 import {collection} from "firebase/firestore"
-import {db} from "/backend/firebase";
+import {db , auth} from "../backend/Firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import {auth} from '/backend/firebase';
 import { useRouter } from 'next/router'
 
 const ContactMessages = collection(db, "contact-messages"); 
