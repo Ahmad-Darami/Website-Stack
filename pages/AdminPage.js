@@ -1,9 +1,9 @@
-import { auth, db } from "/backend/firebase"; // Adjust based on your project structure
+import { auth, db } from "../backend/Firebase"; // Adjust based on your project structure
 import { doc, getDoc, getDocs, collection } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import {IsAdmin} from '../backend/Auth'
 import Navbar from '@/components/Dashboard/Navbar';
-import { fetchCollectionData } from "@/backend/Database";
+import { fetchCollectionData } from "../backend/Database";
 import styled from 'styled-components';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useRouter } from 'next/router'

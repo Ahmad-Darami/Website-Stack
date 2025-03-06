@@ -7,7 +7,7 @@ import {db} from "./Firebase"
 
 export async function CreateData(docRef,message){
   try {
-    await addDoc(docRef, { message: message }); // ✅ Store as an object
+    await addDoc(docRef, { message: message }); 
     console.log("Message submitted successfully!");
     alert("Message sent!");
   } catch (error) {

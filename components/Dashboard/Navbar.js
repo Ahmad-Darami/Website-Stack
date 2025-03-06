@@ -5,10 +5,10 @@ import { useStateContext } from '@/context/StateContext';
 import { useState, useEffect } from "react";
 import Home from '@/components/Dashboard/Home'
 import FontStyles from '@/Styles/GlobalStyles';
-import {auth} from '/backend/Firebase';
+import {auth} from '../../backend/Firebase';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { useRouter } from 'next/router'
-import { IsAdmin } from '/backend/Auth';
+import { IsAdmin } from '../../backend/Auth';
 
 
 
@@ -18,9 +18,6 @@ const Navbar = () => {
   const [isAdmin, setIsAdmin] = useState(false) 
   const router = useRouter()
   
-
-
-  
   console.log(loggedIn);
 
   useEffect(() => {
@@ -29,7 +26,7 @@ const Navbar = () => {
         console.log("User is logged in:", user.email);
         setLoggedIn(true);
         try {
-          const isAdminUser = await IsAdmin(); // ✅ Fetch admin status from Firestore
+          const isAdminUser = await IsAdmin(); 
           setIsAdmin(isAdminUser);
           console.log("Admin status:", isAdminUser);
         } catch (error) {
@@ -43,8 +40,8 @@ const Navbar = () => {
     });
   console.log(isAdmin)
 
-  return () => unsubscribe(); // ✅ Cleanup listener to prevent memory leaks
-  }, []); // ✅ Empty dependency array ensures it runs only once
+  return () => unsubscribe(); 
+  }, []); 
 
   return (
     <GlobalNavbar>
@@ -145,22 +142,7 @@ align-items:left;
 ;
 `;
 
-// const Nav = styled.nav`
-//   font-family: 'Geist Sans', sans-serif;
-//   background-color: #AFA29D;
-//   display: flex;
-//   align-items: center;
-//   justify-content: space-between;
-//   gap: 25px;
-//   height: 40px;
-//   z-index: 1000;
-//   border-radius: 15px;
-//   border: none;
-//   box-shadow: none;
-//   margin: 2px;
-//   padding: 10px; /* ✅ Padding will now be transparent */
-//   background-clip: padding-box; /* ✅ Prevents background from spreading into padding */
-// `;
+
 
 
 const Nav = styled.nav`

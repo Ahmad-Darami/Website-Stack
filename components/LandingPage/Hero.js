@@ -17,7 +17,7 @@ const FontChanger = () => {
         const nextIndex = (fonts.indexOf(prevFont) + 1) % fonts.length;
         return fonts[nextIndex];
       });
-    }, 500); // Changes font every 500ms
+    }, 500); 
 
     return () => clearInterval(interval); 
   }, []);
@@ -28,8 +28,8 @@ const FontChanger = () => {
 
 
 const Hero = () => {
-  const [advice, setAdvice] = useState(""); // Stores the fetched advice
-  const [loading, setLoading] = useState(false); // Tracks loading state
+  const [advice, setAdvice] = useState(""); 
+  const [loading, setLoading] = useState(false); 
 
 
 
@@ -39,7 +39,7 @@ const Hero = () => {
     try {
         const response = await fetch("https://api.adviceslip.com/advice");
         const data = await response.json();
-        setAdvice(data.slip.advice); // Extracts advice from API response
+        setAdvice(data.slip.advice); 
     } catch (error) {
         console.error("Error fetching advice:", error);
         setAdvice("Failed to fetch advice. Try again!");
@@ -55,9 +55,7 @@ const Hero = () => {
       <Overlay>
       
             <Header>
-              {/* <Highlight>
-                Ahmad Darami
-              </Highlight> */}
+              
             <Div2>
             
                 <FontChanger style={{

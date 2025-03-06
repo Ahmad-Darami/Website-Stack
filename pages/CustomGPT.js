@@ -9,10 +9,10 @@ import { useState, useEffect } from "react";
 import Navbar from '@/components/Dashboard/Navbar';
 import OpenAI from "openai";
 import {collection} from "firebase/firestore"
-import {db} from "/backend/firebase";
-import {CreateData} from '/backend/database';
+import {db} from "../backend/Firebase";
+import {CreateData} from '../backend/Database';
 
-const ContactMessages = collection(db, "GPT-messages"); // ✅ Ensure correct reference
+const ContactMessages = collection(db, "GPT-messages"); 
 
 
 const openai = new OpenAI({
@@ -21,13 +21,13 @@ const openai = new OpenAI({
 });
 
 
-// Allow streaming responses up to 30 seconds
+
 export const maxDuration = 30;
 
 
 
 const CustomGPT = () => {
-    const [GPTInput, setGPTInput] = useState(""); // Track input state
+    const [GPTInput, setGPTInput] = useState("");
     const [GPTOutput, setGPTResponse] = useState("");
     const [generation, setGeneration] = useState('');
     const [loading,setLoading] = useState(false);
@@ -52,7 +52,7 @@ const CustomGPT = () => {
                         model: "gpt-4o",
                         messages: [
                             { "role": "system", "content": "Summarize content you are provided with for a high-school student. Be Simple and Concise. Less than 100 words ideally. Make sure to add a metaphor to aid understanding" },
-                            { "role": "user", "content": GPTInput } // Correctly passing GPTInput
+                            { "role": "user", "content": GPTInput } 
                         ],
                         temperature: 1,
                         max_tokens: 256,
@@ -62,7 +62,7 @@ const CustomGPT = () => {
 
 
                     setGPTResponse(response.choices[0].message.content)
-                    console.log(response.choices[0].message.content); // Handle the response
+                    console.log(response.choices[0].message.content); 
                     const storevalue = await CreateData(ContactMessages, { message: `Input: ${GPTInput} Output: ${response.choices[0].message.content || ""} `});
                     
                 }}>

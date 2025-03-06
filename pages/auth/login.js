@@ -28,8 +28,6 @@ const Login = () => {
   } catch (error) {
     console.error('Login failed:', error.message);
     const firebaseError = error.code ? error.code : error.message;
-
-    // Display the error message in an alert
     
     window.alert('Login failed: ' + firebaseError);
     

@@ -10,7 +10,6 @@ const Footer = () => {
         <CenterContainer>
         </CenterContainer>
         <RightContainer>
-          {/* <SocialIcon href="https://www.linkedin.com/in/ahmad-darami-452b89290/" aria-label="Linkedin">LinkedIn</SocialIcon> */}
         </RightContainer>
       </FooterContainer>
     </FooterSection>

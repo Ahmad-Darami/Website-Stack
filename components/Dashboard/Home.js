@@ -1,6 +1,6 @@
 import React from 'react';
 import Link  from 'next/link';
-import { FaReact } from "react-icons/fa"; // Importing a home icon from react-icons
+import { FaReact } from "react-icons/fa"; 
 import styled from 'styled-components';
 
 const Home = () => {
@@ -17,19 +17,19 @@ const Square = styled(Link)`
   justify-content: center;
   width: 50px;
   height: 50px;
-  background-color: #AFA29D; /* ✅ Set background color properly */
-  border-radius: 4px; /* Adjust for rounded edges */
+  background-color: #AFA29D; 
+  border-radius: 4px; 
   text-decoration: none;
 
   
   svg {
     width: 22px;
     height: 22px;
-    fill: white; /* ✅ Explicitly set SVG color */
+    fill: white; 
   }
 
   // &:hover {
-  //   background-color: #0056b3; // Adjust hover effect as needed
+  //   background-color: #0056b3; 
   }
 `;
 

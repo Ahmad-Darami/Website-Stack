@@ -40,7 +40,7 @@ const Signup = () => {
     if(!isValidEmail){ return; }
     
     try{
-        await SignUpUser(auth,email,password) // startsignup process
+        await SignUpUser(auth,email,password) 
         router.push('/')
     }catch(err){
         console.log('Error Signing Up', err)
