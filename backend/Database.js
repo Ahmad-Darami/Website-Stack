@@ -9,7 +9,7 @@ export async function CreateData(docRef,message){
   try {
     await addDoc(docRef, { message: message }); 
     console.log("Message submitted successfully!");
-    alert("Message sent!");
+    alert("Message saved.");
   } catch (error) {
     console.error("Error submitting message:", error);
   }
